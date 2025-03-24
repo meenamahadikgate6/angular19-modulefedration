@@ -1,7 +1,8 @@
 import { loadRemoteModule } from '@angular-architects/module-federation';
 import { CommonModule } from '@angular/common';
-import { Component, importProvidersFrom } from '@angular/core';
+import { AfterViewInit, Component, importProvidersFrom, Type } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { HostInventoryComponent } from './host-inventory/host-inventory.component';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,7 @@ import { RouterOutlet } from '@angular/router';
   imports: [
     RouterOutlet,
     CommonModule,
+    HostInventoryComponent
     // importProvidersFrom(
     //   import('mfeApp/TodoListComponent').then(m => m.TodoListComponent)
     // )
@@ -16,8 +18,22 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit  {
   title = 'host-app';
+
+  HostTodoListComponent: Type<any> | null = null;
+
+
+  async ngAfterViewInit() {
+    try {
+      const { TodoListComponent } = await import('mfeApp/TodoListComponent');
+      this.HostTodoListComponent = TodoListComponent;
+    } catch (error) {
+      console.error('Error loading remote component:', error);
+    }
+  }
+
+  
   // todoListComponent$: Promise<any>;
 
   // constructor() {
