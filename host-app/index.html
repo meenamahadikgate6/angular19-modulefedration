@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS App</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.3/angular-route.min.js"></script>
+
+    
+    <script type="module" src="src/index.js" ></script>
+    <script type="module" src="mfe-loader.js"></script>
+
+
+</head>
+<body ng-app="app">
+
+    <h1>AngularJS Host App</h1>
+
+
+    <div ng-controller="MainController"> 
+        <ng-view></ng-view> 
+    </div>
+
+    <!-- <script src="app.js"></script> -->
+    <!-- <script src="./index.js"></script> -->
+
+   
+    
+
+</body>
+</html>
+<!-- <script src="http://localhost:5500/remoteEntry.js"></script>
+<script>
+  function loadMFE() {
+    mfeApp.get("./Module").then((factory) => {
+      const module = factory();
+      document.getElementById("mfe-container").innerHTML = module.render();
+    });
+  }
+</script>
+<body onload="loadMFE()">
+  <div id="mfe-container"></div>
+</body> -->
